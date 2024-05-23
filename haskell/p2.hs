@@ -22,7 +22,6 @@ evenFibSum x y z
 main :: IO ()
 main = do
   putStr "Example: "
-  print (evenFibSum 1 2 100)
-  assert ((evenFibSum 1 2 100) == 44) (putStr "Passed!")
+  assert ((evenFibSum 1 2 100) == 44) (putStrLn "Passed!")
   putStr "Test Case: " 
   print (evenFibSum 1 2 limit)
