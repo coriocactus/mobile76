@@ -1,4 +1,11 @@
-solution n = binaryToInt $ concat $ [ [fst x] ++ [snd x] | x <- binaryPairs $ padToEight $ intToBinary n]
+{- cabal:
+    build-depends:
+      base,
+-}
+
+solution n =
+  binaryToInt $ concat
+  $ [ [fst x] ++ [snd x] | x <- binaryPairs $ padToEight $ intToBinary n ]
 
 intToBinary 0 = "0"
 intToBinary n = reverse $ go n
@@ -14,5 +21,4 @@ padToEight x = replicate (8 - length x) '0' ++ x
 binaryToInt :: String -> Int
 binaryToInt = foldl (\x y -> x * 2 + (read [y] :: Int)) 0
 
-main = do
-    print $ padToEight $ intToBinary 166680
+main = print $ padToEight $ intToBinary 166680

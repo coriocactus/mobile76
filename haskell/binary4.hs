@@ -1,4 +1,12 @@
-solution n m = 2 ^ (31 - last [fst x | x <- zip [0..] $ zip (pad32 $ intToBinary n) (pad32 $ intToBinary m), let y = snd x, fst y /= snd y])
+{- cabal:
+      build-depends:
+        base
+-}
+
+solution n m =
+  2 ^ (31 - last [fst x | x <- zip [0..]
+    $ zip (pad32 $ intToBinary n) (pad32 $ intToBinary m)
+    , let y = snd x, fst y /= snd y])
 
 intToBinary 0 = "0"
 intToBinary n = reverse $ go n

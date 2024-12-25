@@ -1,6 +1,8 @@
-module URL (
-  testURL
-           ) where
+{- cabal:
+    build-depends:
+        base,
+        network-uri
+  -}
 
 {-
     ___           ___                   
@@ -23,9 +25,9 @@ import Network.URI (
   uriPath, uriFragment, uriQuery
                    )
 
-testURL :: IO ()
-testURL = do
-  let s = "postgres://user:pass@host.com:5432/path?k=v#f"
+main :: IO ()
+main = do
+  let s = "https://github.com/cordcivilian/cord.git"
   case parseURI s of
     Nothing  -> error "no URI"
     Just uri -> do
