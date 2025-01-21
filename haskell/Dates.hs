@@ -1,22 +1,30 @@
-module Dates (
-  testDates
-             ) where
+{- cabal:
+    build-depends:
+        base,
+        time
+-}
 
-import Data.Time.Clock (
-    getCurrentTime
-                       )
+module Main where
 
-import Data.Time.Format (
-    formatTime,
-    defaultTimeLocale
-                        )
+import qualified Data.Time.Clock as Clock
+import qualified Data.Time.Format as DateTimeFormat
 
-testDates :: IO ()
-testDates = do
-    currentTime <- getCurrentTime
+main :: IO ()
+main = do
+    currentTime <- Clock.getCurrentTime
     putStrLn $ "Current UTC time: " ++ show currentTime
     print currentTime
-
-    let formattedTime = formatTime defaultTimeLocale "%Y-%m-%d %H:%M:%S" currentTime
-    putStrLn $ "Formatted time: " ++ formattedTime
+    let hour =
+            DateTimeFormat.formatTime
+            DateTimeFormat.defaultTimeLocale
+            "%H"
+            currentTime
+        hourlyVersion = ['a'..'z'] !! read hour
+        dailyVersion =
+            DateTimeFormat.formatTime
+            DateTimeFormat.defaultTimeLocale
+            "%Y-%m-%d"
+            currentTime
+        version = dailyVersion ++ [hourlyVersion]
+    putStrLn $ "v" ++ dailyVersion ++ [hourlyVersion]
 
