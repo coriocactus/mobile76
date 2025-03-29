@@ -1,11 +1,3 @@
-{- cabal:
-    build-depends:
-        base,
-        process,
-        directory,
-        async,
--}
-
 import System.Process
 import System.Exit
 import System.Directory

@@ -1,6 +1,4 @@
-module P2 (
-  testP2,
-) where
+import Control.Exception
 
 {- 
   Each new term in the Fibonacci sequence
@@ -10,9 +8,7 @@ module P2 (
   By considering the terms in the Fibonacci sequence
   whose values do not exceed four million,
   find the sum of the even-valued terms.
-  -}
-
-import Control.Exception
+-}
 
 limit :: Integer
 limit = 4 * (10 ^ (6 :: Integer))
@@ -23,8 +19,8 @@ evenFibSum x y z
   | x <= z && even x = x + evenFibSum y (x + y) z
   | otherwise = evenFibSum y (x + y) z
 
-testP2 :: IO ()
-testP2 = do
+main :: IO ()
+main = do
   putStr "Example: "
   assert (evenFibSum 1 2 100 == 44) (putStrLn "Passed!")
   putStr "Test Case: " 

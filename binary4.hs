@@ -1,8 +1,3 @@
-{- cabal:
-      build-depends:
-        base
--}
-
 solution n m =
   2 ^ (31 - last [fst x | x <- zip [0..]
     $ zip (pad32 $ intToBinary n) (pad32 $ intToBinary m)

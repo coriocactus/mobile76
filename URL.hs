@@ -1,29 +1,4 @@
-{- cabal:
-    build-depends:
-        base,
-        network-uri
-  -}
-
-{-
-    ___           ___                   
-   /__/\         /  /\                  
-   \  \:\       /  /::\                 
-    \  \:\     /  /:/\:\    ___     ___ 
-___  \  \:\   /  /:/~/:/   /__/\   /  /\
-/__/\  \__\:\ /__/:/ /:/___ \  \:\ /  /:/
-\  \:\ /  /:/ \  \:\/:::::/  \  \:\  /:/ 
-\  \:\  /:/   \  \::/~~~~    \  \:\/:/  
- \  \:\/:/     \  \:\         \  \::/   
-  \  \::/       \  \:\         \__\/    
-   \__\/         \__\/                  
-
-   -}
-
-import Network.URI (
-  parseURI, uriScheme, uriAuthority,
-  uriUserInfo, uriRegName, uriPort,
-  uriPath, uriFragment, uriQuery
-                   )
+import Network.URI
 
 main :: IO ()
 main = do

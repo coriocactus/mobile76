@@ -1,8 +1,3 @@
-{- cabal:
-    build-depends:
-      base,
--}
-
 solution n =
   binaryToInt $ concat
   $ [ [fst x] ++ [snd x] | x <- binaryPairs $ padToEight $ intToBinary n ]
