@@ -33,18 +33,18 @@ convexHull points
       let p0 = List.minimumBy (\(x1, y1) (x2, y2) -> compare y1 y2 `mappend` compare x1 x2) points
           sortedPoints = List.sortBy (\p1 p2 ->
             let o = orientation p0 p1 p2
-            in if o == 0 then compare (sqDist p0 p2) (sqDist p0 p1) else compare o 0)
-            (List.delete p0 points)
+            in if o == 0 then compare (sqDist p0 p2) (sqDist p0 p1) else compare o 0) (List.delete p0 points)
           buildHull acc [] = acc
           buildHull acc (p:ps) =
             case acc of
               (a2:a1:as) ->
-                if orientation a2 a1 p <= 0
-                  then buildHull (a1:as) (p:ps)   -- Remove last point if clockwise or colinear
-                  else buildHull (p:acc) ps       -- Add point if counterclockwise
-              _ -> buildHull (p:acc) ps           -- Fewer than 2 points, just add
+                if orientation a2 a1 p <= 0 then
+                  buildHull (a1:as) (p:ps)   -- Remove last point if clockwise or colinear
+                else
+                  buildHull (p:acc) ps       -- Add point if counterclockwise
+              _ -> buildHull (p:acc) ps      -- Fewer than 2 points, just add
       in case sortedPoints of
-           [] -> [p0]                             -- Only one point after deleting p0 (unlikely with length >= 3)
+           [] -> [p0]                        -- Only one point after deleting p0 (unlikely with length >= 3)
            (p1:ps) -> reverse $ buildHull [p0, p1] ps
 
 triangulateConvex :: [LatLong] -> [(LatLong, LatLong, LatLong)]
@@ -103,9 +103,6 @@ lineIntersect (p1, p2) p3 p4 =
           else
             Nothing
 
-mkBoundingBox :: Polygon -> [LatLong]
-mkBoundingBox polygon = convexHull polygon
-
 randomPointInConvexPolygon :: [LatLong] -> IO LatLong
 randomPointInConvexPolygon points = do
   let triangles = triangulateConvex points
@@ -119,7 +116,7 @@ randomPointInConvexPolygon points = do
 
 randomPointInPolygon :: Polygon -> IO LatLong
 randomPointInPolygon polygon = do
-  point <- randomPointInConvexPolygon (mkBoundingBox polygon)
+  point <- randomPointInConvexPolygon (convexHull polygon)
   if isInside point polygon then return point else randomPointInPolygon polygon
 
 londonPolygon :: Polygon
@@ -130,20 +127,14 @@ londonPolygon = [
   (51.6918741, -0.5103751)
   ]
 
-randomLondonLocation :: IO LatLong
-randomLondonLocation = randomPointInPolygon londonPolygon
-
-manyRandomLondonLocations :: Int -> IO [LatLong]
-manyRandomLondonLocations n = mapM (const randomLondonLocation) [1..n]
-
-createDayGeoStore :: Int -> IO [LatLong]
-createDayGeoStore = manyRandomLondonLocations
+randomPolygonLocations :: Polygon -> Int -> IO [LatLong]
+randomPolygonLocations polygon n = mapM (const $ randomPointInPolygon polygon) [1..n]
 
 createGeoStore :: [(Day, Int)] -> IO GeoStore
 createGeoStore daySpecs = do
   entries <- Monad.mapM
     ( \(day, n) -> do
-        locations <- createDayGeoStore n
+        locations <- randomPolygonLocations londonPolygon n
         return (day, locations)
     ) daySpecs
   return $ Map.fromList entries
