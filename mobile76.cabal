@@ -52,6 +52,11 @@ executable hrt3
   build-depends:      base, bytestring
   default-language:   Haskell2010
 
+executable http
+  main-is:            http.hs
+  build-depends:      base, network
+  default-language:   GHC2024
+
 executable lib
   main-is:            lib.hs
   build-depends:      base
