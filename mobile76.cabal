@@ -72,6 +72,11 @@ executable p3
   build-depends:      base
   default-language:   Haskell2010
 
+executable packets
+  main-is:            packets.hs
+  build-depends:      base, wai, warp, network, bytestring, async, http-types
+  default-language:   Haskell2010
+
 executable parallel
   main-is:            parallel.hs
   build-depends:      base, parallel, criterion
