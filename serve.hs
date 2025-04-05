@@ -38,10 +38,10 @@ byeHandler = do
 -- ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|
 -- | +[API(+[ENDPOINT]) <-> SERVER(+[HANDLER])] + PROXY -> APPLICATION
 
-type API = GreetAPI
+type API = GreetAPI :<|> Servant.EmptyAPI
 
 server :: Servant.Server API
-server = greetServer
+server = greetServer :<|> Servant.emptyServer
 
 proxy :: Servant.Proxy API
 proxy = Servant.Proxy
