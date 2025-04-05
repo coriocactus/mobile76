@@ -5,27 +5,27 @@ version:              0.1.0.0
 executable binary
   main-is:            binary.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable binary2
   main-is:            binary2.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable binary3
   main-is:            binary3.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable binary4
   main-is:            binary4.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable dates
   main-is:            dates.hs
   build-depends:      base, time
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable elo
   main-is:            elo.hs
@@ -35,27 +35,27 @@ executable elo
 executable fac
   main-is:            fac.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable geo
   main-is:            geo.hs
   build-depends:      base, random, containers
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable hrt1
   main-is:            hrt1.hs
   build-depends:      base, containers
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable hrt2
   main-is:            hrt2.hs
   build-depends:      base, containers
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable hrt3
   main-is:            hrt3.hs
   build-depends:      base, bytestring
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable http
   main-is:            http.hs
@@ -65,54 +65,64 @@ executable http
 executable lib
   main-is:            lib.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable p1
   main-is:            p1.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable p2
   main-is:            p2.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable p3
   main-is:            p3.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable packets
   main-is:            packets.hs
   build-depends:      base, wai, warp, network, bytestring, async, http-types
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable parallel
   main-is:            parallel.hs
   build-depends:      base, parallel, criterion
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable process
   main-is:            process.hs
   build-depends:      base, process, directory, async
-  default-language:   Haskell2010
+  default-language:   GHC2024
+
+executable quickcheck
+  main-is:            quickcheck.hs
+  build-depends:      base, QuickCheck
+  default-language:   GHC2024
 
 executable quicksort
   main-is:            quicksort.hs
   build-depends:      base
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable reader
   main-is:            reader.hs
   build-depends:      base, mtl
-  default-language:   Haskell2010
+  default-language:   GHC2024
+
+executable serve
+  main-is:            serve.hs
+  build-depends:      base, servant-server, wai, warp, text
+  default-language:   GHC2024
 
 executable system
   main-is:            system.hs
   build-depends:      base, process, directory
-  default-language:   Haskell2010
+  default-language:   GHC2024
 
 executable url
   main-is:            url.hs
   build-depends:      base, network-uri
-  default-language:   Haskell2010
+  default-language:   GHC2024
