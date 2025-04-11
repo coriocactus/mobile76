@@ -1,11 +1,14 @@
-fac :: Integer -> Integer
-fac 0 = 1
-fac n = n * fac (n-1)
+fac :: (Num a, Eq a) => a -> a
+fac n = go n 1
+  where
+    go :: (Num a, Eq a) => a -> a -> a
+    go 0 acc = acc
+    go m acc = go (m-1) (m*acc)
 
 sneakySquare :: Double -> Double -> Double
 sneakySquare x y
-  | x > y      = x ^ (2 :: Integer) + y ^ (2 :: Integer)
-  | otherwise  = x ^ (2 :: Integer)  - y ^ (2 :: Integer)
+  | x > y     = x^2 + y^2
+  | otherwise = x^2 - y^2
 
 main :: IO ()
 main= do

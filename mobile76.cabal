@@ -114,7 +114,7 @@ executable reader
 
 executable serve
   main-is:            serve.hs
-  build-depends:      base, servant-server, wai, warp, text, http-types
+  build-depends:      base, servant-server, wai, warp, text, http-types, servant-blaze, blaze-html
   default-language:   GHC2024
 
 executable system
