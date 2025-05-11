@@ -93,7 +93,7 @@ svdWeightedOrdering rankings allItems dims =
         sum $ zipWith (*) (VS.toList row) normWeights) (toRows uReduced)
   in sortOn snd $ zip users userScores
 
--- | principal curve approach to ordering
+-- | compute a one-dimensional ordering based on the principal curve
 principalCurveOrdering :: UserRankings -> [ItemID] -> Int -> [(UserID, Double)]
 principalCurveOrdering rankings allItems dims =
   let users = M.keys rankings
