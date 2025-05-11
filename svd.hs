@@ -71,6 +71,7 @@ main = do
         , (8, [5,3,2,1,4])
         , (9, [4,2,5,3,1])
         , (10, [3,4,2,5,1])
+        , (11, [1,4])
         ]
 
   let ordering = svdOneDimensionalOrdering userRankings allItems
